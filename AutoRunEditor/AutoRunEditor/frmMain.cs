@@ -35,11 +35,11 @@ namespace AutoRunEditor
             {
                 Win32ResourceModify rm = new Win32ResourceModify(ofd.FileName);
                 rm.UpdateString(103, cbOperation.Text);
-                rm.UpdateString(104, tbFile.Text);
-                rm.UpdateString(105, tbParameters.Text);
-                rm.UpdateString(106, tbWorkingDirectory.Text);
+                rm.UpdateString(104, tbParameters.Text);
+                rm.UpdateString(105, tbWorkingDirectory.Text);
+                rm.UpdateString(106, tbFile.Text);
                 rm.UpdateString(107, cbVisibilityMode.SelectedIndex == -1 ? "0": cbVisibilityMode.SelectedIndex.ToString());
-                rm.UpdateImage(iconPath);
+                //rm.UpdateImage(iconPath);
                 MessageBox.Show("updated");
             }
         }
