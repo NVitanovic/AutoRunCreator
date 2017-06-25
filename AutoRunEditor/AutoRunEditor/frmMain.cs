@@ -16,30 +16,34 @@ namespace AutoRunEditor
         public frmMain()
         {
             InitializeComponent();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            if(!System.IO.File.Exists("AutoRun.exe"))
+            {
+                MessageBox.Show("AutoRun.exe is missing from the application folder, exiting!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            Win32ResourceModify rm = new Win32ResourceModify("AutoRun.exe");
+            if (rm.GetString(100) != "AutoRun")
+            {
+                MessageBox.Show("Invalid AutoRun.exe file in the application folder, exiting!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == DialogResult.OK)
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Executable file|*.exe";
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                Win32ResourceModify rm = new Win32ResourceModify(ofd.FileName);
+                System.IO.File.Copy("AutoRun.exe", sfd.FileName);
+                Win32ResourceModify rm = new Win32ResourceModify(sfd.FileName);
                 rm.UpdateString(103, cbOperation.Text);
-                rm.UpdateString(104, tbParameters.Text);
-                rm.UpdateString(105, tbWorkingDirectory.Text);
-                rm.UpdateString(106, tbFile.Text);
+                rm.UpdateString(104, tbParameters.Text.Length == 0?" ": tbParameters.Text);
+                rm.UpdateString(105, tbWorkingDirectory.Text.Length == 0 ? " " : tbWorkingDirectory.Text);
+                rm.UpdateString(106, tbFile.Text.Length == 0 ? " " : tbFile.Text);
                 rm.UpdateString(107, cbVisibilityMode.SelectedIndex == -1 ? "0": cbVisibilityMode.SelectedIndex.ToString());
-                //rm.UpdateImage(iconPath);
+                if(iconPath.Length > 0)
+                    rm.UpdateImage(iconPath);
                 MessageBox.Show("updated");
             }
         }
@@ -47,11 +51,23 @@ namespace AutoRunEditor
         private void btnSelectIcon_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Icon files|*.ico";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 pbIcon.Image = Bitmap.FromHicon(new Icon(ofd.FileName, new Size(64, 64)).Handle);
                 iconPath = ofd.FileName;
             }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("AutoRun creator\nVersion 1.0\nNikola Vitanović\nnikola@vitanovic.net", "About");
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            iconPath = "";
+            pbIcon.Image = null;
         }
     }
 }

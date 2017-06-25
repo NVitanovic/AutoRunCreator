@@ -45,6 +45,7 @@
             this.gbSettings = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.gbSettings.SuspendLayout();
@@ -55,16 +56,14 @@
             this.tbParameters.Location = new System.Drawing.Point(143, 96);
             this.tbParameters.Name = "tbParameters";
             this.tbParameters.Size = new System.Drawing.Size(285, 26);
-            this.tbParameters.TabIndex = 0;
-            this.tbParameters.Text = " ";
+            this.tbParameters.TabIndex = 3;
             // 
             // tbWorkingDirectory
             // 
             this.tbWorkingDirectory.Location = new System.Drawing.Point(143, 128);
             this.tbWorkingDirectory.Name = "tbWorkingDirectory";
             this.tbWorkingDirectory.Size = new System.Drawing.Size(285, 26);
-            this.tbWorkingDirectory.TabIndex = 1;
-            this.tbWorkingDirectory.Text = " ";
+            this.tbWorkingDirectory.TabIndex = 4;
             // 
             // cbOperation
             // 
@@ -78,7 +77,7 @@
             this.cbOperation.Location = new System.Drawing.Point(143, 30);
             this.cbOperation.Name = "cbOperation";
             this.cbOperation.Size = new System.Drawing.Size(285, 28);
-            this.cbOperation.TabIndex = 2;
+            this.cbOperation.TabIndex = 1;
             this.cbOperation.Text = "open";
             // 
             // cbVisibilityMode
@@ -99,15 +98,14 @@
             this.cbVisibilityMode.Location = new System.Drawing.Point(143, 160);
             this.cbVisibilityMode.Name = "cbVisibilityMode";
             this.cbVisibilityMode.Size = new System.Drawing.Size(285, 28);
-            this.cbVisibilityMode.TabIndex = 3;
+            this.cbVisibilityMode.TabIndex = 5;
             // 
             // tbFile
             // 
             this.tbFile.Location = new System.Drawing.Point(143, 64);
             this.tbFile.Name = "tbFile";
             this.tbFile.Size = new System.Drawing.Size(285, 26);
-            this.tbFile.TabIndex = 4;
-            this.tbFile.Text = " ";
+            this.tbFile.TabIndex = 2;
             // 
             // lblOperation
             // 
@@ -135,7 +133,6 @@
             this.lblParameters.Size = new System.Drawing.Size(91, 20);
             this.lblParameters.TabIndex = 7;
             this.lblParameters.Text = "Parameters";
-            this.lblParameters.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblWorkingDirectory
             // 
@@ -148,6 +145,7 @@
             // 
             // pbLogo
             // 
+            this.pbLogo.Image = global::AutoRunEditor.Properties.Resources.AUTORUNCreator;
             this.pbLogo.Location = new System.Drawing.Point(12, 12);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(440, 100);
@@ -156,6 +154,7 @@
             // 
             // pbIcon
             // 
+            this.pbIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbIcon.Location = new System.Drawing.Point(143, 194);
             this.pbIcon.Name = "pbIcon";
             this.pbIcon.Size = new System.Drawing.Size(64, 64);
@@ -185,13 +184,14 @@
             this.btnSelectIcon.Location = new System.Drawing.Point(213, 230);
             this.btnSelectIcon.Name = "btnSelectIcon";
             this.btnSelectIcon.Size = new System.Drawing.Size(52, 28);
-            this.btnSelectIcon.TabIndex = 13;
+            this.btnSelectIcon.TabIndex = 6;
             this.btnSelectIcon.Text = "...";
             this.btnSelectIcon.UseVisualStyleBackColor = true;
             this.btnSelectIcon.Click += new System.EventHandler(this.btnSelectIcon_Click);
             // 
             // gbSettings
             // 
+            this.gbSettings.Controls.Add(this.btnClear);
             this.gbSettings.Controls.Add(this.lblOperation);
             this.gbSettings.Controls.Add(this.btnSelectIcon);
             this.gbSettings.Controls.Add(this.tbParameters);
@@ -217,7 +217,7 @@
             this.btnSave.Location = new System.Drawing.Point(319, 400);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(134, 37);
-            this.btnSave.TabIndex = 15;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -228,8 +228,21 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(37, 37);
             this.btnHelp.TabIndex = 16;
+            this.btnHelp.TabStop = false;
             this.btnHelp.Text = "?";
             this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(213, 194);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(52, 28);
+            this.btnClear.TabIndex = 13;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmMain
             // 
@@ -246,8 +259,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "AutoRunCreator";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "AutoRun Creator";
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             this.gbSettings.ResumeLayout(false);
@@ -275,6 +287,7 @@
         private System.Windows.Forms.GroupBox gbSettings;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
