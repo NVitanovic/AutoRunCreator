@@ -56,6 +56,7 @@
             this.tbParameters.Name = "tbParameters";
             this.tbParameters.Size = new System.Drawing.Size(285, 26);
             this.tbParameters.TabIndex = 0;
+            this.tbParameters.Text = " ";
             // 
             // tbWorkingDirectory
             // 
@@ -63,14 +64,22 @@
             this.tbWorkingDirectory.Name = "tbWorkingDirectory";
             this.tbWorkingDirectory.Size = new System.Drawing.Size(285, 26);
             this.tbWorkingDirectory.TabIndex = 1;
+            this.tbWorkingDirectory.Text = " ";
             // 
             // cbOperation
             // 
             this.cbOperation.FormattingEnabled = true;
+            this.cbOperation.Items.AddRange(new object[] {
+            "edit",
+            "explore",
+            "find",
+            "open",
+            "print"});
             this.cbOperation.Location = new System.Drawing.Point(143, 30);
             this.cbOperation.Name = "cbOperation";
             this.cbOperation.Size = new System.Drawing.Size(285, 28);
             this.cbOperation.TabIndex = 2;
+            this.cbOperation.Text = "open";
             // 
             // cbVisibilityMode
             // 
@@ -98,6 +107,7 @@
             this.tbFile.Name = "tbFile";
             this.tbFile.Size = new System.Drawing.Size(285, 26);
             this.tbFile.TabIndex = 4;
+            this.tbFile.Text = " ";
             // 
             // lblOperation
             // 
@@ -178,6 +188,7 @@
             this.btnSelectIcon.TabIndex = 13;
             this.btnSelectIcon.Text = "...";
             this.btnSelectIcon.UseVisualStyleBackColor = true;
+            this.btnSelectIcon.Click += new System.EventHandler(this.btnSelectIcon_Click);
             // 
             // gbSettings
             // 
@@ -209,6 +220,7 @@
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnHelp
             // 
